@@ -1,8 +1,29 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { signup, useAuth, logout } from "../firebase";
+import { useRef, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const currentUser = useAuth();
+
+  async function handleSignup() {
+    await signup(emailRef.current.value, passwordRef.current.value);
+  }
+
+  async function handleLogout() {
+    setLoading(true);
+    try {
+      await logout();
+    } catch {
+      alert("error");
+    }
+    setLoading(false);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,6 +33,15 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <div>Currently logged in as: {currentUser?.email} </div>
+        <input ref={emailRef} placeholder="Email" />
+        <input ref={passwordRef} type="assword" placeholder="Password" />
+        <button disabled={loading || currentUser} onClick={handleSignup}>
+          Sign Up
+        </button>
+        <button disabled={loading || !currentUser} onClick={handleLogout}>
+          Log Out
+        </button>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>

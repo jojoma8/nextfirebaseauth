@@ -14,9 +14,9 @@ import { useState, useEffect } from "react";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
   // apiKey: "AIzaSyCCtmSIz8w_KCMxUPEIo8B79qpcgLFV6yA",
-  apiKey: process.env.apiKey,
+  // apiKey: process.env.apiKey,
   authDomain: "nextjswithfirebaseauth.firebaseapp.com",
   projectId: "nextjswithfirebaseauth",
   storageBucket: "nextjswithfirebaseauth.appspot.com",

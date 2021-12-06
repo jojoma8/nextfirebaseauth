@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { signup, useAuth, logout } from "../firebase";
+import { signup, useAuth, logout, login } from "../firebase";
 import { useRef, useState } from "react";
 
 export default function Home() {
@@ -11,7 +11,24 @@ export default function Home() {
   const currentUser = useAuth();
 
   async function handleSignup() {
-    await signup(emailRef.current.value, passwordRef.current.value);
+    setLoading(true);
+    try {
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      alert("Error");
+    }
+    setLoading(false);
+  }
+
+  async function handleLogin() {
+    setLoading(true);
+    try {
+      await login(emailRef.current.value, passwordRef.current.value);
+    } catch (error) {
+      console.log(process.env.REACT_APP_FIREBASE_API_KEY);
+      alert(error.message);
+    }
+    setLoading(false);
   }
 
   async function handleLogout() {
@@ -19,7 +36,7 @@ export default function Home() {
     try {
       await logout();
     } catch {
-      alert("error");
+      alert("Error");
     }
     setLoading(false);
   }
@@ -35,9 +52,12 @@ export default function Home() {
       <main className={styles.main}>
         <div>Currently logged in as: {currentUser?.email} </div>
         <input ref={emailRef} placeholder="Email" />
-        <input ref={passwordRef} type="assword" placeholder="Password" />
+        <input ref={passwordRef} type="password" placeholder="Password" />
         <button disabled={loading || currentUser} onClick={handleSignup}>
           Sign Up
+        </button>
+        <button disabled={loading || currentUser} onClick={handleLogin}>
+          Log In
         </button>
         <button disabled={loading || !currentUser} onClick={handleLogout}>
           Log Out

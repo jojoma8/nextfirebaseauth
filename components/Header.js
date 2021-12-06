@@ -22,7 +22,7 @@ function Header() {
   return (
     <div
       className="sticky top-0 z-50 bg-white flex items-center p-2 
-      lf:px-5 shadow-md"
+      lf:px-5 shadow-md overflow-hidden "
     >
       <h1>pyNotes</h1>
 
@@ -35,11 +35,11 @@ function Header() {
           layout="fixed"
         />
         {currentUser && (
-          <div className="flex ml-2 items-center rounded-full bg-gray-100 p-2">
+          <div className="flex ml-0 items-center rounded-full bg-gray-100 p-2">
             <SearchIcon className="h-6 text-gray-600" />
             <input
-              className="hidden md:inline-flex flex ml-2 items-center bg-transparent outline-none
-            placeholder-gray-500 flex-shrink"
+              className="hidden md:inline-flex flex ml-2 items-center bg-transparent 
+              outline-none placeholder-gray-500 flex-shrink"
               type="text"
               placeholder="search pyNotes"
             />
@@ -50,7 +50,7 @@ function Header() {
       {/* Center */}
       <div className="flex justify-center flex-grow">
         {currentUser && (
-          <div className="flex space-x-6 md:space-x-2">
+          <div className="flex space-x-1 md:space-x-2">
             <HeaderIcon Icon={HomeIcon} />
             <HeaderIcon Icon={FlagIcon} />
             <HeaderIcon Icon={PlayIcon} />
@@ -64,7 +64,7 @@ function Header() {
       <div className="flex items-center sm:space-x-2 justify-end">
         {/* Profile Pic */}
 
-        <p className="whitepace-nowrap font-semibold pr-3">
+        <p className="whitepace-nowrap font-semibold pr-0">
           {currentUser?.email}
         </p>
 

@@ -39,7 +39,7 @@ function UserAuthentication() {
   }
 
   return (
-    <div className="flex ml-2 p-2 ">
+    <div className="flex ml-1 p-1 ">
       {!currentUser && (
         <div>
           <input className="inpt" ref={emailRef} placeholder="Email" />
@@ -71,7 +71,7 @@ function UserAuthentication() {
       )}
       {currentUser && (
         <button
-          className="btn"
+          className="btn "
           disabled={loading || !currentUser}
           onClick={handleLogout}
         >

@@ -19,9 +19,49 @@ import {
 import HeaderIcon from "./HeaderIcon";
 import { useAuth } from "../firebase";
 import UserAuthentication from "./UserAuthentication";
+import { useContext } from "react";
+import { PassDocIDContext } from "../utilities/Context";
+import { handleSearchChange } from "./Posts";
 
 function Header({ setNewPostModal }) {
   const currentUser = useAuth();
+
+  const {
+    docID,
+    setDocID,
+    searchTerm,
+    setSearchTerm,
+    postFilterData,
+    setPostFilterData,
+    postData,
+    setPostData,
+  } = useContext(PassDocIDContext);
+
+  const excludeColumns = ["id", "timestamp", "user"];
+
+  const handleSearchChange = (value) => {
+    // console.log(value);
+    setSearchTerm(value);
+    filterSearchData(value);
+  };
+
+  // Filter Records by Search Text
+  const filterSearchData = (value) => {
+    const lowerCaseValue = value.toLowerCase().trim();
+    if (lowerCaseValue === "") setPostFilterData(postData);
+    else {
+      const filteredSearchData = postData.filter((item) => {
+        return Object.keys(item).some((key) =>
+          excludeColumns.includes(key)
+            ? false
+            : item[key].toString().toLowerCase().includes(lowerCaseValue)
+        );
+      });
+      setPostFilterData(filteredSearchData);
+      // setPostData(filteredSearchData);
+    }
+  };
+
   return (
     <div
       className="sticky top-0 z-40 bg-white flex items-center p-2 
@@ -46,6 +86,10 @@ function Header({ setNewPostModal }) {
               outline-none placeholder-gray-500 flex-shrink"
               type="text"
               placeholder="search pyNotes"
+              onChange={(event) => {
+                // setSearchTerm(event.target.value);
+                handleSearchChange(event.target.value);
+              }}
             />
           </div>
         )}

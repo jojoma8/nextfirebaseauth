@@ -6,22 +6,25 @@ import {
   HomeIcon,
   UserGroupIcon,
   ViewGridIcon,
+  PlusIcon,
 } from "@heroicons/react/solid";
+
 import {
   FlagIcon,
   PlayIcon,
   SearchIcon,
   ShoppingCartIcon,
+  DocumentAddIcon,
 } from "@heroicons/react/outline";
 import HeaderIcon from "./HeaderIcon";
 import { useAuth } from "../firebase";
 import UserAuthentication from "./UserAuthentication";
 
-function Header() {
+function Header({ setNewPostModal }) {
   const currentUser = useAuth();
   return (
     <div
-      className="sticky top-0 z-50 bg-white flex items-center p-2 
+      className="sticky top-0 z-40 bg-white flex items-center p-2 
       lf:px-5 shadow-md overflow-hidden "
     >
       <h1>pyNotes</h1>
@@ -33,6 +36,7 @@ function Header() {
           width={60}
           height={40}
           layout="fixed"
+          alt="facebook logo"
         />
         {currentUser && (
           <div className="flex ml-0 items-center rounded-full bg-gray-100 p-2">
@@ -51,8 +55,12 @@ function Header() {
       <div className="flex justify-center flex-grow">
         {currentUser && (
           <div className="flex space-x-1 md:space-x-2">
-            <HeaderIcon Icon={HomeIcon} />
-            <HeaderIcon Icon={FlagIcon} />
+            <div>
+              <HeaderIcon Icon={HomeIcon} />
+            </div>
+            <div onClick={() => setNewPostModal(true)}>
+              <HeaderIcon Icon={DocumentAddIcon} />
+            </div>
             <HeaderIcon Icon={PlayIcon} />
             <HeaderIcon Icon={ShoppingCartIcon} />
             <HeaderIcon Icon={UserGroupIcon} />

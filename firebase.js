@@ -11,6 +11,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -36,6 +37,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
+export default getFirestore();
+
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
@@ -48,6 +51,7 @@ export function logout() {
   return signOut(auth);
 }
 
+//Custom Hook
 export function useAuth() {
   const [currentUser, setCurrentUser] = useState();
 

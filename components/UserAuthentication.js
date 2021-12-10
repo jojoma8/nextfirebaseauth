@@ -71,7 +71,7 @@ function UserAuthentication() {
       )}
       {currentUser && (
         <button
-          className="btn "
+          className="btn hover:bg-blue-300 transition-all"
           disabled={loading || !currentUser}
           onClick={handleLogout}
         >

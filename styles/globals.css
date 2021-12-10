@@ -13,4 +13,8 @@
   .inpt {
     @apply ml-2 rounded-lg p-2 pl-3 placeholder-gray-900 outline-none bg-blue-100;
   }
+  .inputIcon {
+    @apply flex items-center space-x-1 hover:bg-gray-100 flex-grow justify-center 
+    p-2 rounded-xl cursor-pointer;
+  }
 }

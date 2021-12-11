@@ -1,3 +1,4 @@
+import { getAuth } from "@firebase/auth";
 import {
   BackspaceIcon,
   ThumbUpIcon,
@@ -14,7 +15,15 @@ import {
 import { handleDelete, handleEdit } from "../utilities/PostUtils";
 // import { deleteContent } from "./DeletePostModal";
 
-function Post({ id, title, codeSnippet, description, timestamp, user }) {
+function Post({
+  id,
+  title,
+  codeSnippet,
+  description,
+  timestamp,
+  user,
+  displayName,
+}) {
   const {
     editPostModal,
     setEditPostModal,
@@ -25,6 +34,7 @@ function Post({ id, title, codeSnippet, description, timestamp, user }) {
     editPostDescriptionModal,
     setEditPostDescriptionModal,
   } = useContext(EditPostContext);
+  const auth = getAuth();
 
   const { deletePostModal, setDeletePostModal } = useContext(DeletePostContext);
   const { docID, setDocID } = useContext(PassDocIDContext);
@@ -39,7 +49,8 @@ function Post({ id, title, codeSnippet, description, timestamp, user }) {
       <div className="pt-4 pl-4">
         {/* Header of Post */}
         <div>
-          <p className="font-medium">{user}</p>
+          {/* <p className="font-medium">{user}</p> */}
+          <p className="text-xl font-bold">{displayName}</p>
           <p className="text-xs text-gray-400">
             {new Date(timestamp?.toDate()).toLocaleString()}
           </p>
@@ -75,32 +86,36 @@ function Post({ id, title, codeSnippet, description, timestamp, user }) {
             <p className="text-xs sm:text-base:">Comment</p>
           </div>
 
-          <div
-            className="inputIcon"
-            onClick={() => {
-              setDocID(id);
-              setEditPostModal(true);
-              setEditPostTitleModal(title);
-              setEditPostCodeSnippetModal(codeSnippet);
-              setEditPostDescriptionModal(description);
-            }}
-          >
-            <PencilIcon className="h-4" />
-            <p className="text-xs sm:text-base:">Edit</p>
-          </div>
+          {auth.currentUser?.uid === user && (
+            <div
+              className="inputIcon"
+              onClick={() => {
+                setDocID(id);
+                setEditPostModal(true);
+                setEditPostTitleModal(title);
+                setEditPostCodeSnippetModal(codeSnippet);
+                setEditPostDescriptionModal(description);
+              }}
+            >
+              <PencilIcon className="h-4" />
+              <p className="text-xs sm:text-base:">Edit</p>
+            </div>
+          )}
 
           {/* <div className="inputIcon" onClick={() => deleteContent(id)}> */}
           {/* <div className="inputIcon" onClick={() => setDeletePostModal(true)}> */}
-          <div
-            className="inputIcon"
-            onClick={() => {
-              setDeletePostModal(true);
-              setDocID(id);
-            }}
-          >
-            <BackspaceIcon className="h-4" />
-            <p className="text-xs sm:text-base:">Delete</p>
-          </div>
+          {auth.currentUser?.uid === user && (
+            <div
+              className="inputIcon"
+              onClick={() => {
+                setDeletePostModal(true);
+                setDocID(id);
+              }}
+            >
+              <BackspaceIcon className="h-4" />
+              <p className="text-xs sm:text-base:">Delete</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

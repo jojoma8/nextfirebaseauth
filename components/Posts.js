@@ -62,6 +62,7 @@ function Posts() {
             description={post.description}
             timestamp={post.timestamp}
             user={post.user}
+            displayName={post.displayName}
           />
         ))}
         {postFilterData.length === 0 && (

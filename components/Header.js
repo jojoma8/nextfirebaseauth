@@ -64,7 +64,7 @@ function Header({ setNewPostModal }) {
 
   return (
     <div
-      className="sticky top-0 z-40 bg-white flex items-center p-2 
+      className="sticky top-0 z-40 bg-white flex items-center  px-5 py-2
       lf:px-5 shadow-md overflow-hidden "
     >
       <h1>pyNotes</h1>
@@ -117,7 +117,8 @@ function Header({ setNewPostModal }) {
         {/* Profile Pic */}
 
         <p className="whitepace-nowrap font-semibold pr-0">
-          {currentUser?.email}
+          {/* {currentUser?.email} */}
+          {currentUser?.displayName}
         </p>
 
         <ViewGridIcon className="icon" />

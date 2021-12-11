@@ -1,11 +1,13 @@
-import { signup, useAuth, logout, login } from "../firebase";
-import { useRef, useState } from "react";
+import { signup, useAuth, logout, login, signInWithGoogle } from "../firebase";
+import { useContext, useRef, useState } from "react";
+import { SignInContext } from "../utilities/Context";
 
 function UserAuthentication() {
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const currentUser = useAuth();
+  const { signInModal, setSignInModal } = useContext(SignInContext);
 
   async function handleSignup() {
     setLoading(true);
@@ -40,7 +42,7 @@ function UserAuthentication() {
 
   return (
     <div className="flex ml-1 p-1 ">
-      {!currentUser && (
+      {/* {!currentUser && (
         <div>
           <input className="inpt" ref={emailRef} placeholder="Email" />
           <input
@@ -59,12 +61,16 @@ function UserAuthentication() {
         >
           Sign Up
         </button>
-      )}
+      )} */}
       {!currentUser && (
         <button
           className="btn"
-          // disabled={loading || currentUser}
-          onClick={handleLogin}
+          disabled={loading || currentUser}
+          // onClick={handleLogin}
+          // onClick={signInWithGoogle}
+          onClick={() => {
+            setSignInModal(true);
+          }}
         >
           Log In
         </button>

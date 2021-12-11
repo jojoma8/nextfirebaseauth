@@ -16,6 +16,8 @@ import {
 } from "../utilities/Context";
 import DeletePostModal from "../components/DeletePostModal";
 import SignInModal from "../components/SignInModal";
+import SignUpModal from "../components/SignUpModal";
+import UserDetailsModal from "../components/UserDetailsModal";
 
 export default function Home() {
   const currentUser = useAuth();
@@ -40,9 +42,20 @@ export default function Home() {
   ]);
 
   const [signInModal, setSignInModal] = useState(false);
+  const [signUpModal, setSignUpModal] = useState(false);
+  const [userDetailsModal, setUserDetailsModal] = useState(false);
 
   return (
-    <SignInContext.Provider value={{ signInModal, setSignInModal }}>
+    <SignInContext.Provider
+      value={{
+        signInModal,
+        setSignInModal,
+        signUpModal,
+        setSignUpModal,
+        userDetailsModal,
+        setUserDetailsModal,
+      }}
+    >
       <PassDocIDContext.Provider
         value={{
           docID,
@@ -79,6 +92,8 @@ export default function Home() {
                 />
               </Head>
               {signInModal && <SignInModal />}
+              {signUpModal && <SignUpModal />}
+              {userDetailsModal && <UserDetailsModal />}
               {newPostModal && (
                 <CreatePostModal setNewPostModal={setNewPostModal} />
               )}

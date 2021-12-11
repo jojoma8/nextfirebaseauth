@@ -11,6 +11,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { getFirestore } from "firebase/firestore";
@@ -41,8 +42,18 @@ const auth = getAuth();
 
 export default getFirestore();
 
-export function signup(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
+export function signup(email, password, userDisplayName) {
+  return createUserWithEmailAndPassword(auth, email, password).then((res) =>
+    updateUserName(userDisplayName)
+  );
+}
+
+export function updateUserName(userDisplayName) {
+  return updateProfile(auth.currentUser, {
+    displayName: userDisplayName,
+  }).catch((error) => {
+    const errorCode = error.code;
+  });
 }
 
 export function login(email, password) {

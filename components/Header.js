@@ -20,7 +20,7 @@ import HeaderIcon from "./HeaderIcon";
 import { useAuth } from "../firebase";
 import UserAuthentication from "./UserAuthentication";
 import { useContext } from "react";
-import { PassDocIDContext } from "../utilities/Context";
+import { PassDocIDContext, SignInContext } from "../utilities/Context";
 import { handleSearchChange } from "./Posts";
 
 function Header({ setNewPostModal }) {
@@ -36,6 +36,8 @@ function Header({ setNewPostModal }) {
     postData,
     setPostData,
   } = useContext(PassDocIDContext);
+
+  const { userDetailsModal, setUserDetailsModal } = useContext(SignInContext);
 
   const excludeColumns = ["id", "timestamp", "user"];
 
@@ -107,7 +109,9 @@ function Header({ setNewPostModal }) {
             </div>
             <HeaderIcon Icon={PlayIcon} />
             <HeaderIcon Icon={ShoppingCartIcon} />
-            <HeaderIcon Icon={UserGroupIcon} />
+            <div onClick={() => setUserDetailsModal(true)}>
+              <HeaderIcon Icon={UserGroupIcon} />
+            </div>
           </div>
         )}
       </div>

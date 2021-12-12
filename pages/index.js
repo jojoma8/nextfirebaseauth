@@ -136,9 +136,11 @@ export default function Home() {
       {/* <Header setNewPostModal={setNewPostModal} /> */}
 
       <main>
-        <div className="flex items-center flex-col mb-24 mt-4">
-          <PostHeader />
-        </div>
+        {currentUser && (
+          <div className="flex items-center flex-col mb-24 mt-4">
+            <PostHeader />
+          </div>
+        )}
         <div className="  w-screen sm:max-w-md lg:max-w-2xl ">
           <Posts setEditPostModal={setEditPostModal} />
         </div>

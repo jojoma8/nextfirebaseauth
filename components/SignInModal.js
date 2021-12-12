@@ -70,15 +70,15 @@ function SignInModal() {
       >
         <section>
           <h3 className="font-bold text-2xl">Sign In</h3>
-          <p className="text-gray-600 pt-2">Choose sign in method</p>
+          <p className="text-gray-600 pt-6">If you already have an account</p>
         </section>
-        <section className="mt-10">
+        <section className="mt-4">
           <div className="flex flex-col">
             <div className="flex flex-col">
               <input
                 ref={emailRef}
                 className="mb-5 p-3 rounded bg-gray-100"
-                placeholder="Email"
+                placeholder="Registered email with us"
               />
             </div>
             <div className="flex flex-col">

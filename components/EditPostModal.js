@@ -32,8 +32,11 @@ function EditPostModal() {
 
   return (
     <div
-      className=" fixed min-h-screen flex justify-center bg-gray-200 items-center 
-        bg-opacity-70 z-50 w-screen "
+      className="fixed min-h-screen flex justify-center bg-gray-200 items-center 
+        bg-opacity-70 z-50 w-screen pb-60 md:px-0"
+      onClick={() => {
+        setEditPostModal(false);
+      }}
     >
       <div className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg ">
         <div>
@@ -66,11 +69,12 @@ function EditPostModal() {
             placeholder="Short description"
           />
         </div>
-        <div className="flex justify-center items-center">
-          <div className="w-3/4  m-3 flex justify-center ">
+        <div className="   ">
+          <div className=" flex justify-center mt-3   ">
             {/* Save Changes Button */}
             <button
-              className="px-10 py-3  bg-blue-500 rounded-lg"
+              className="px-10 py-3  bg-blue-500 rounded-lg text-white
+              font-bold "
               onClick={() => {
                 setEditPostModal(false);
                 editValue();
@@ -80,7 +84,8 @@ function EditPostModal() {
             </button>
             {/* Cancel Changes Button */}
             <button
-              className="px-10 py-3 ml-20 bg-red-500 rounded-lg "
+              className="px-10 py-3 bg-red-500 rounded-lg text-white
+              font-bold sm:ml-5 md:ml-20 lg:ml-48"
               onClick={() => setEditPostModal(false)}
             >
               Cancel

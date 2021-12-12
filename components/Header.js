@@ -70,20 +70,20 @@ function Header({ setNewPostModal }) {
   return (
     <div
       className="sticky top-0 z-40 bg-white flex items-center  px-5 py-2
-      lf:px-5 shadow-md overflow-hidden "
+      lf:px-5 shadow-md overflow-hidden font-bold "
     >
-      <h1>pyNotes</h1>
+      <h1 className="text-blue-500 font-extrabold text-2xl">pyNotes</h1>
 
       {/* Left */}
       <div className="flex items-center">
-        <Image
+        {/* <Image
           src="https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo-500x313.png"
           width={60}
           height={40}
           layout="fixed"
-          alt="facebook logo"
-        />
-        {currentUser && (
+          alt="logo"
+        /> */}
+        {/* {currentUser && (
           <div className="flex ml-0 items-center rounded-full bg-gray-100 p-2">
             <SearchIcon className="h-6 text-gray-600" />
             <input
@@ -97,7 +97,7 @@ function Header({ setNewPostModal }) {
               }}
             />
           </div>
-        )}
+        )} */}
       </div>
 
       {/* Center */}

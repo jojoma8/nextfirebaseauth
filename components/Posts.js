@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import Post from "./Post";
 import { PassDocIDContext, PassUserIDContext } from "../utilities/Context";
+import PostHeader from "./PostHeader";
 
 function Posts() {
   // const [postData, setPostData] = useState([

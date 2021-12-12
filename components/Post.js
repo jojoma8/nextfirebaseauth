@@ -46,8 +46,8 @@ function Post({
   // };
 
   return (
-    <div className="flex flex-col mx-5 bg-white my-5 rounded-2xl shadow-lg">
-      <div className="pt-4 pl-4">
+    <div className="flex flex-col mx-5 bg-white my-5 rounded-2xl shadow-lg ">
+      <div className="pt-4 px-4">
         {/* Header of Post */}
         <div>
           {/* <p className="font-medium">{user}</p> */}
@@ -58,7 +58,7 @@ function Post({
         </div>
 
         {/* Content of Post */}
-        <div className="p-5  ">
+        <div className="p-5">
           <div>
             <h1 className="text-lg font-semibold">{title}</h1>
           </div>

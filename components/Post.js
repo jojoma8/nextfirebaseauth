@@ -104,7 +104,7 @@ function Post({
 
           {/* <div className="inputIcon" onClick={() => deleteContent(id)}> */}
           {/* <div className="inputIcon" onClick={() => setDeletePostModal(true)}> */}
-          {auth.currentUser?.uid === user && (
+          {auth.currentUser?.uid == process.env.REACT_APP_ADMIN_ID && (
             <div
               className="inputIcon"
               onClick={() => {

@@ -1,13 +1,25 @@
 import { useContext, useRef, useState } from "react";
-import { login, signInWithGoogle, signup, useAuth } from "../firebase";
+import {
+  forgotPassword,
+  login,
+  signInWithGoogle,
+  signup,
+  useAuth,
+} from "../firebase";
 import { SignInContext } from "../utilities/Context";
 
 function SignInModal() {
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { signInModal, setSignInModal, signUpModal, setSignUpModal } =
-    useContext(SignInContext);
+  const {
+    signInModal,
+    setSignInModal,
+    signUpModal,
+    setSignUpModal,
+    forgotPasswordModal,
+    setForgotPasswordModal,
+  } = useContext(SignInContext);
   const currentUser = useAuth();
 
   async function handleLogin() {
@@ -17,13 +29,31 @@ function SignInModal() {
       // console.log(emailRef.current.value);
       // console.log(passwordRef.current.value);
       await login(emailRef.current.value, passwordRef.current.value);
-      // console.log(currentUser?.email);
     } catch (error) {
-      console.log(process.env.REACT_APP_FIREBASE_API_KEY);
       alert(error.message);
     }
     setLoading(false);
     setSignInModal(false);
+  }
+
+  async function handleForgotPassword() {
+    const emailInput = emailRef.current.value;
+
+    // if (emailRef.current.value == null) {
+    //   alert("Please enter your email");
+    // } else {
+    //   setLoading(true);
+    try {
+      await forgotPassword(emailRef.current.value);
+      // console.log("email sent");
+      setForgotPasswordModal(true);
+    } catch (error) {
+      alert(error.message);
+      // return false;
+    }
+    setLoading(false);
+    setSignInModal(false);
+    // }
   }
 
   return (
@@ -44,14 +74,14 @@ function SignInModal() {
         </section>
         <section className="mt-10">
           <div className="flex flex-col">
-            <div>
+            <div className="flex flex-col">
               <input
                 ref={emailRef}
                 className="mb-5 p-3 rounded bg-gray-100"
                 placeholder="Email"
               />
             </div>
-            <div>
+            <div className="flex flex-col">
               <input
                 ref={passwordRef}
                 className="mb-5 p-3 rounded bg-gray-100"
@@ -59,17 +89,16 @@ function SignInModal() {
                 type="password"
               />
             </div>
-            <div className="flex flex-col justify-end">
-              <a
-                href=""
-                className="text-sm text-blue-600 hover:text-blue-800 mb-2"
+            <div className="flex flex-col ">
+              <button
+                className="text-sm text-blue-600 hover:text-blue-800 mb-4"
+                onClick={handleForgotPassword}
               >
                 Forgot your password?
-              </a>
-              <p className="text-sm mb-5">
+              </button>
+              <div className="text-sm mb-5">
                 {"Don't have an account yet? "}
-                <a
-                  href=""
+                <button
                   className="text-blue-600 hover:text-blue-800"
                   onClick={() => {
                     setSignInModal(false);
@@ -77,8 +106,8 @@ function SignInModal() {
                   }}
                 >
                   Sign Up
-                </a>
-              </p>
+                </button>
+              </div>
             </div>
             <button
               className="bg-blue-600 hover:bg-blue-700 text-white

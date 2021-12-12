@@ -33,7 +33,7 @@ function UserDetailsModal() {
       className="flex fixed pb-60 md:px-0 bg-gray-200 min-h-screen items-center 
     justify-center z-50 bg-opacity-70 w-screen"
       onClick={() => {
-        setSignUpModal(false);
+        setUserDetailsModal(false);
       }}
     >
       <div

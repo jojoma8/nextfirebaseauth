@@ -12,6 +12,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { getFirestore } from "firebase/firestore";
@@ -62,6 +63,10 @@ export function login(email, password) {
 
 export function logout() {
   return signOut(auth);
+}
+
+export function forgotPassword(email) {
+  return sendPasswordResetEmail(auth, email);
 }
 
 export function signInWithGoogle() {

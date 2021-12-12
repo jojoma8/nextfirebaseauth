@@ -1,13 +1,27 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { EditPostContext } from "../utilities/Context";
 import { handleNew } from "../utilities/PostUtils";
 
-function CreatePostModal({ setNewPostModal }) {
+function CreatePostModal() {
   const titleRef = useRef("");
   const codeSnippetRef = useRef("");
   const descriptionRef = useRef("");
 
   const [titleError, setTitleError] = useState(false);
   const [codeSnippetError, setCodeSnippetError] = useState(false);
+
+  const {
+    editPostModal,
+    setEditPostModal,
+    editPostTitleModal,
+    setEditPostTitleModal,
+    editPostCodeSnippetModal,
+    setEditPostCodeSnippetModal,
+    editPostDescriptionModal,
+    setEditPostDescriptionModal,
+    newPostModal,
+    setNewPostModal,
+  } = useContext(EditPostContext);
 
   const sendValue = (e) => {
     e.preventDefault();

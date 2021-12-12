@@ -2,133 +2,148 @@ import Head from "next/head";
 import Image from "next/image";
 
 import { useAuth } from "../firebase";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import Posts from "../components/Posts";
-import CreatePostModal from "../components/CreatePostModal";
-import { useState } from "react";
-import EditPostModal from "../components/EditPostModal";
 import {
   DeletePostContext,
   EditPostContext,
-  PassUserIDContext,
-  PassDocIDContext,
   SignInContext,
 } from "../utilities/Context";
-import DeletePostModal from "../components/DeletePostModal";
-import SignInModal from "../components/SignInModal";
-import SignUpModal from "../components/SignUpModal";
+import { useContext } from "react";
+import CreatePostModal from "../components/CreatePostModal";
 import UserDetailsModal from "../components/UserDetailsModal";
+import EditPostModal from "../components/EditPostModal";
+import DeletePostModal from "../components/DeletePostModal";
+import SignUpModal from "../components/SignUpModal";
+import SignInModal from "../components/SignInModal";
+import ForgotPasswordModal from "../components/ForgotPasswordModal";
+// import { useState } from "react";
+//
+// import {
+//   DeletePostContext,
+//   EditPostContext,
+//   PassUserIDContext,
+//   PassDocIDContext,
+//   SignInContext,
+// } from "../utilities/Context";
 
 export default function Home() {
   const currentUser = useAuth();
-  const [newPostModal, setNewPostModal] = useState(false);
+  // const [newPostModal, setNewPostModal] = useState(false);
 
-  const [editPostModal, setEditPostModal] = useState(false);
-  const [editPostTitleModal, setEditPostTitleModal] = useState(false);
-  const [editPostCodeSnippetModal, setEditPostCodeSnippetModal] =
-    useState(false);
-  const [editPostDescriptionModal, setEditPostDescriptionModal] =
-    useState(false);
+  // const [editPostModal, setEditPostModal] = useState(false);
+  // const [editPostTitleModal, setEditPostTitleModal] = useState(false);
+  // const [editPostCodeSnippetModal, setEditPostCodeSnippetModal] =
+  //   useState(false);
+  // const [editPostDescriptionModal, setEditPostDescriptionModal] =
+  //   useState(false);
 
-  const [deletePostModal, setDeletePostModal] = useState(false);
+  // const [deletePostModal, setDeletePostModal] = useState(false);
 
-  const [docID, setDocID] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [postFilterData, setPostFilterData] = useState([
-    { title: "Loading data...", id: "initiate" },
-  ]);
-  const [postData, setPostData] = useState([
-    { title: "Loading data...", id: "initiate" },
-  ]);
+  // const [docID, setDocID] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [postFilterData, setPostFilterData] = useState([
+  //   { title: "Loading data...", id: "initiate" },
+  // ]);
+  // const [postData, setPostData] = useState([
+  //   { title: "Loading data...", id: "initiate" },
+  // ]);
 
-  const [signInModal, setSignInModal] = useState(false);
-  const [signUpModal, setSignUpModal] = useState(false);
-  const [userDetailsModal, setUserDetailsModal] = useState(false);
+  // const [signInModal, setSignInModal] = useState(false);
+  // const [signUpModal, setSignUpModal] = useState(false);
+  // const [userDetailsModal, setUserDetailsModal] = useState(false);
+  const {
+    signInModal,
+    setSignInModal,
+    signUpModal,
+    setSignUpModal,
+    userDetailsModal,
+    setUserDetailsModal,
+    forgotPasswordModal,
+    setForgotPasswordModal,
+  } = useContext(SignInContext);
+
+  const {
+    editPostModal,
+    setEditPostModal,
+    editPostTitleModal,
+    setEditPostTitleModal,
+    editPostCodeSnippetModal,
+    setEditPostCodeSnippetModal,
+    editPostDescriptionModal,
+    setEditPostDescriptionModal,
+    newPostModal,
+    setNewPostModal,
+  } = useContext(EditPostContext);
+
+  const { deletePostModal, setDeletePostModal } = useContext(DeletePostContext);
+  // const { userDetailsModal, setUserDetailsModal } = useContext(SignInContext);
 
   return (
-    <SignInContext.Provider
-      value={{
-        signInModal,
-        setSignInModal,
-        signUpModal,
-        setSignUpModal,
-        userDetailsModal,
-        setUserDetailsModal,
-      }}
-    >
-      <PassDocIDContext.Provider
-        value={{
-          docID,
-          setDocID,
-          searchTerm,
-          setSearchTerm,
-          postFilterData,
-          setPostFilterData,
-          postData,
-          setPostData,
-        }}
-      >
-        <DeletePostContext.Provider
-          value={{ deletePostModal, setDeletePostModal }}
-        >
-          <EditPostContext.Provider
-            value={{
-              editPostModal,
-              setEditPostModal,
-              editPostTitleModal,
-              setEditPostTitleModal,
-              editPostCodeSnippetModal,
-              setEditPostCodeSnippetModal,
-              editPostDescriptionModal,
-              setEditPostDescriptionModal,
-            }}
-          >
-            <div className="flex-column bg-gray-100 h-screen">
-              <Head>
-                <title>pyNotes</title>
-                <meta
-                  name="description"
-                  content="Generated by create next app"
-                />
-              </Head>
-              {signInModal && <SignInModal />}
-              {signUpModal && <SignUpModal />}
-              {userDetailsModal && <UserDetailsModal />}
-              {newPostModal && (
-                <CreatePostModal setNewPostModal={setNewPostModal} />
-              )}
-              {editPostModal && <EditPostModal />}
-              {deletePostModal && <DeletePostModal />}
+    // <SignInContext.Provider
+    //   value={{
+    //     signInModal,
+    //     setSignInModal,
+    //     signUpModal,
+    //     setSignUpModal,
+    //     userDetailsModal,
+    //     setUserDetailsModal,
+    //   }}
+    // >
+    //   <PassDocIDContext.Provider
+    //     value={{
+    //       docID,
+    //       setDocID,
+    //       searchTerm,
+    //       setSearchTerm,
+    //       postFilterData,
+    //       setPostFilterData,
+    //       postData,
+    //       setPostData,
+    //     }}
+    //   >
+    //     <DeletePostContext.Provider
+    //       value={{ deletePostModal, setDeletePostModal }}
+    //     >
+    //       <EditPostContext.Provider
+    //         value={{
+    //           editPostModal,
+    //           setEditPostModal,
+    //           editPostTitleModal,
+    //           setEditPostTitleModal,
+    //           editPostCodeSnippetModal,
+    //           setEditPostCodeSnippetModal,
+    //           editPostDescriptionModal,
+    //           setEditPostDescriptionModal,
+    //         }}
+    //       >
+    <div className="flex-column bg-gray-100 h-screen">
+      <Head>
+        <title>pyNotes</title>
+        <meta name="description" content="Generated by create next app" />
+      </Head>
+      {signInModal && <SignInModal />}
+      {signUpModal && <SignUpModal />}
+      {userDetailsModal && <UserDetailsModal />}
+      {/* {newPostModal && <CreatePostModal setNewPostModal={setNewPostModal} />} */}
+      {newPostModal && <CreatePostModal />}
+      {editPostModal && <EditPostModal />}
+      {forgotPasswordModal && <ForgotPasswordModal />}
+      {deletePostModal && <DeletePostModal />}
 
-              <Header setNewPostModal={setNewPostModal} />
+      {/* <Header setNewPostModal={setNewPostModal} /> */}
 
-              <main>
-                <div className="">
-                  <Posts setEditPostModal={setEditPostModal} />
-                </div>
-              </main>
+      <main>
+        <div className="">
+          <Posts setEditPostModal={setEditPostModal} />
+        </div>
+      </main>
 
-              <footer className="fixed bottom-0 w-full border-t p-4 text-center bg-white">
-                <a
-                  href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Powered by{" "}
-                  <span>
-                    <Image
-                      src="/vercel.svg"
-                      alt="Vercel Logo"
-                      width={72}
-                      height={16}
-                    />
-                  </span>
-                </a>
-              </footer>
-            </div>
-          </EditPostContext.Provider>
-        </DeletePostContext.Provider>
-      </PassDocIDContext.Provider>
-    </SignInContext.Provider>
+      {/* <Footer /> */}
+    </div>
+    //       {/* </EditPostContext.Provider>
+    //     </DeletePostContext.Provider>
+    //   </PassDocIDContext.Provider>
+    // </SignInContext.Provider> */}
   );
 }

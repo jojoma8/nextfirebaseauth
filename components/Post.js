@@ -13,6 +13,7 @@ import {
 } from "../utilities/Context";
 
 import { handleDelete, handleEdit } from "../utilities/PostUtils";
+import EditPost from "./EditPost";
 // import { deleteContent } from "./DeletePostModal";
 
 function Post({
@@ -38,7 +39,7 @@ function Post({
 
   const { deletePostModal, setDeletePostModal } = useContext(DeletePostContext);
   const { docID, setDocID } = useContext(PassDocIDContext);
-
+  // const name = user;
   // const deleteContent = (id) => {
   //   // console.log(id);
   //   handleDelete(id);
@@ -101,6 +102,8 @@ function Post({
               <p className="text-xs sm:text-base:">Edit</p>
             </div>
           )}
+
+          {/* {<EditPost name={user} />} */}
 
           {/* <div className="inputIcon" onClick={() => deleteContent(id)}> */}
           {/* <div className="inputIcon" onClick={() => setDeletePostModal(true)}> */}

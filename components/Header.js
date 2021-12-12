@@ -7,6 +7,7 @@ import {
   UserGroupIcon,
   ViewGridIcon,
   PlusIcon,
+  UserIcon,
 } from "@heroicons/react/solid";
 
 import {
@@ -15,6 +16,7 @@ import {
   SearchIcon,
   ShoppingCartIcon,
   DocumentAddIcon,
+  BookOpenIcon,
 } from "@heroicons/react/outline";
 import HeaderIcon from "./HeaderIcon";
 import { useAuth } from "../firebase";
@@ -22,6 +24,7 @@ import UserAuthentication from "./UserAuthentication";
 import { useContext } from "react";
 import { PassDocIDContext, SignInContext } from "../utilities/Context";
 import { handleSearchChange } from "./Posts";
+import Link from "next/link";
 
 function Header({ setNewPostModal }) {
   const currentUser = useAuth();
@@ -101,16 +104,22 @@ function Header({ setNewPostModal }) {
       <div className="flex justify-center flex-grow">
         {currentUser && (
           <div className="flex space-x-1 md:space-x-2">
-            <div>
-              <HeaderIcon Icon={HomeIcon} />
-            </div>
+            <Link href="/">
+              <a>
+                <HeaderIcon Icon={HomeIcon} />
+              </a>
+            </Link>
             <div onClick={() => setNewPostModal(true)}>
               <HeaderIcon Icon={DocumentAddIcon} />
             </div>
-            <HeaderIcon Icon={PlayIcon} />
+            <Link href="/python_blog">
+              <a>
+                <HeaderIcon Icon={BookOpenIcon} />
+              </a>
+            </Link>
             <HeaderIcon Icon={ShoppingCartIcon} />
             <div onClick={() => setUserDetailsModal(true)}>
-              <HeaderIcon Icon={UserGroupIcon} />
+              <HeaderIcon Icon={UserIcon} />
             </div>
           </div>
         )}

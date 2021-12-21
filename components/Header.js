@@ -22,11 +22,15 @@ import HeaderIcon from "./HeaderIcon";
 import { useAuth } from "../firebase";
 import UserAuthentication from "./UserAuthentication";
 import { useContext } from "react";
-import { PassDocIDContext, SignInContext } from "../utilities/Context";
+import {
+  EditPostContext,
+  PassDocIDContext,
+  SignInContext,
+} from "../utilities/Context";
 import { handleSearchChange } from "./Posts";
 import Link from "next/link";
 
-function Header({ setNewPostModal }) {
+function Header() {
   const currentUser = useAuth();
 
   const {
@@ -39,6 +43,21 @@ function Header({ setNewPostModal }) {
     postData,
     setPostData,
   } = useContext(PassDocIDContext);
+
+  const {
+    editPostModal,
+    setEditPostModal,
+    editPostTitleModal,
+    setEditPostTitleModal,
+    editPostCodeSnippetModal,
+    setEditPostCodeSnippetModal,
+    editPostDescriptionModal,
+    setEditPostDescriptionModal,
+    newPostModal,
+    setNewPostModal,
+    filterPostModal,
+    setFilterPostModal,
+  } = useContext(EditPostContext);
 
   const { userDetailsModal, setUserDetailsModal } = useContext(SignInContext);
 
@@ -102,42 +121,46 @@ function Header({ setNewPostModal }) {
 
       {/* Center */}
       <div className="flex justify-center flex-grow">
-        {currentUser && (
-          <div className="flex space-x-1 md:space-x-2">
-            <Link href="/">
-              <a>
-                <HeaderIcon Icon={HomeIcon} />
-              </a>
-            </Link>
+        <div className="flex space-x-2 sm:space-x-4">
+          <Link href="/">
+            <a>
+              <HeaderIcon Icon={HomeIcon} />
+            </a>
+          </Link>
+
+          {/* {currentUser && (
             <div onClick={() => setNewPostModal(true)}>
               <HeaderIcon Icon={DocumentAddIcon} />
             </div>
-            <Link href="/python_blog">
-              <a>
-                <HeaderIcon Icon={BookOpenIcon} />
-              </a>
-            </Link>
-            <HeaderIcon Icon={ShoppingCartIcon} />
+          )} */}
+          <Link href="/python_blog">
+            <a>
+              <HeaderIcon Icon={BookOpenIcon} />
+            </a>
+          </Link>
+          {currentUser && <HeaderIcon Icon={ShoppingCartIcon} />}
+          {currentUser && (
             <div onClick={() => setUserDetailsModal(true)}>
               <HeaderIcon Icon={UserIcon} />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
       {/* Right */}
 
       <div className="flex items-center sm:space-x-2 justify-end">
         {/* Profile Pic */}
 
-        <p className="whitepace-nowrap font-semibold pr-0">
+        <p className="whitepace-nowrap font-semibold pr-0 hidden sm:block">
           {/* {currentUser?.email} */}
           {currentUser?.displayName}
+          {/* {currentUser?.uid} */}
         </p>
 
-        <ViewGridIcon className="icon" />
+        {/* <ViewGridIcon className="icon" />
         <ChatIcon className="icon" />
         <BellIcon className="icon" />
-        <ChevronDownIcon className="icon" />
+        <ChevronDownIcon className="icon" /> */}
         <UserAuthentication />
       </div>
     </div>

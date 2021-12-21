@@ -21,6 +21,8 @@ function CreatePostModal() {
     setEditPostDescriptionModal,
     newPostModal,
     setNewPostModal,
+    filterPostModal,
+    setFilterPostModal,
   } = useContext(EditPostContext);
 
   const sendValue = (e) => {
@@ -56,7 +58,7 @@ function CreatePostModal() {
   return (
     <div
       className=" fixed min-h-screen flex justify-center bg-gray-200 items-center 
-        bg-opacity-70 z-50 w-screen "
+        bg-opacity-70 z-50 w-screen pb-60"
     >
       <div className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg ">
         <div>

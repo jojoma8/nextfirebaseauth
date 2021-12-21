@@ -38,7 +38,10 @@ function EditPostModal() {
         setEditPostModal(false);
       }}
     >
-      <div className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg ">
+      <div
+        className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg "
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="text-3xl p-5 font-bold">Edit Post</div>
         </div>

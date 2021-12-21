@@ -22,6 +22,8 @@ function AdminUserEdit() {
     setEditPostCodeSnippetModal,
     editPostDescriptionModal,
     setEditPostDescriptionModal,
+    newPostModal,
+    setNewPostModal,
   } = useContext(EditPostContext);
   const auth = getAuth();
 
@@ -88,6 +90,8 @@ function EditPost({ name }) {
     setEditPostCodeSnippetModal,
     editPostDescriptionModal,
     setEditPostDescriptionModal,
+    distinctAuthor,
+    setDistinctAuthor,
   } = useContext(EditPostContext);
   const auth = getAuth();
 

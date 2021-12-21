@@ -24,6 +24,7 @@ import UserDetailsModal from "../components/UserDetailsModal";
 
 const Layout = ({ children }) => {
   const [newPostModal, setNewPostModal] = useState(false);
+  const [filterPostModal, setFilterPostModal] = useState(false);
 
   const [editPostModal, setEditPostModal] = useState(false);
   const [editPostTitleModal, setEditPostTitleModal] = useState(false);
@@ -31,6 +32,9 @@ const Layout = ({ children }) => {
     useState(false);
   const [editPostDescriptionModal, setEditPostDescriptionModal] =
     useState(false);
+  const [lowerCaseValue, setLowerCaseValue] = useState("");
+  const [distinctAuthor, setDistinctAuthor] = useState();
+  const [authorListFilter, setAuthorListFilter] = useState([]);
 
   const [deletePostModal, setDeletePostModal] = useState(false);
 
@@ -42,11 +46,13 @@ const Layout = ({ children }) => {
   const [postData, setPostData] = useState([
     { title: "Loading data...", id: "initiate" },
   ]);
+  const [postFilteredByAuthor, setPostFilteredByAuthor] = useState([{}]);
 
   const [signInModal, setSignInModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const [userDetailsModal, setUserDetailsModal] = useState(false);
   const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+  const [currentUserID, setCurrentUserID] = useState(false);
 
   return (
     <SignInContext.Provider
@@ -59,6 +65,8 @@ const Layout = ({ children }) => {
         setUserDetailsModal,
         forgotPasswordModal,
         setForgotPasswordModal,
+        currentUserID,
+        setCurrentUserID,
       }}
     >
       <PassDocIDContext.Provider
@@ -88,10 +96,20 @@ const Layout = ({ children }) => {
               setEditPostDescriptionModal,
               newPostModal,
               setNewPostModal,
+              lowerCaseValue,
+              setLowerCaseValue,
+              filterPostModal,
+              setFilterPostModal,
+              distinctAuthor,
+              setDistinctAuthor,
+              authorListFilter,
+              setAuthorListFilter,
+              postFilteredByAuthor,
+              setPostFilteredByAuthor,
             }}
           >
             <div>
-              <Header setNewPostModal={setNewPostModal} />
+              <Header />
               {children}
               <Footer />
             </div>

@@ -27,6 +27,7 @@ export const handleNew = async (title, codeSnippet, description) => {
     displayName: auth.currentUser?.displayName,
   };
   const docRef = await addDoc(collectionRef, payload);
+  // console.log(auth.currentUser.uid);
   // console.log("The new ID is: " + docRef.id);
   // console.log("The user ID is: " + currentUser.uid);
 };

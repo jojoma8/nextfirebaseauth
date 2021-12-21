@@ -14,9 +14,13 @@ function DeletePostModal() {
   return (
     <div
       className=" fixed min-h-screen flex justify-center bg-gray-200 items-center 
-          bg-opacity-70 z-50 w-screen "
+          bg-opacity-70 z-50 w-screen pb-60"
+      onClick={() => setDeletePostModal(false)}
     >
-      <div className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg ">
+      <div
+        className="w-3/4 bg-white rounded-lg p-4 text-center shadow-lg "
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="text-3xl p-5 font-bold">Delete the Post?</div>
         </div>

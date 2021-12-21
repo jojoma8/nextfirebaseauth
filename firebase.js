@@ -14,8 +14,9 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getFirestore } from "firebase/firestore";
+import { SignInContext } from "./utilities/Context";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -78,6 +79,7 @@ export function signInWithGoogle() {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+      // console.log();
       // ...
       // console.log(user);
     })
@@ -101,5 +103,6 @@ export function useAuth() {
     const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
     return unsub;
   }, []);
+  // setCurrentUserID(currentUser.uid);
   return currentUser;
 }

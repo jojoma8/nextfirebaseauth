@@ -18,6 +18,7 @@ import SignUpModal from "../components/SignUpModal";
 import SignInModal from "../components/SignInModal";
 import ForgotPasswordModal from "../components/ForgotPasswordModal";
 import PostHeader from "../components/PostHeader";
+import FilterPostModal from "../components/FilterPostModal";
 // import { useState } from "react";
 //
 // import {
@@ -75,6 +76,8 @@ export default function Home() {
     setEditPostDescriptionModal,
     newPostModal,
     setNewPostModal,
+    filterPostModal,
+    setFilterPostModal,
   } = useContext(EditPostContext);
 
   const { deletePostModal, setDeletePostModal } = useContext(DeletePostContext);
@@ -130,19 +133,27 @@ export default function Home() {
       {/* {newPostModal && <CreatePostModal setNewPostModal={setNewPostModal} />} */}
       {newPostModal && <CreatePostModal />}
       {editPostModal && <EditPostModal />}
+      {filterPostModal && <FilterPostModal />}
       {forgotPasswordModal && <ForgotPasswordModal />}
       {deletePostModal && <DeletePostModal />}
 
       {/* <Header setNewPostModal={setNewPostModal} /> */}
 
       <main>
-        {currentUser && (
-          <div className="flex items-center flex-col mb-24 mt-4">
-            <PostHeader />
+        <div className="">
+          {!currentUser && (
+            <div className="flex items-center flex-col mb-5 mt-4 ">
+              Login to search pyNotes, comment and chat with other users.
+            </div>
+          )}
+          {currentUser && (
+            <div className="flex items-center flex-col mb-24 mt-4  ">
+              <PostHeader />
+            </div>
+          )}
+          <div className="flex justify-center mb-5 ">
+            <Posts setEditPostModal={setEditPostModal} />
           </div>
-        )}
-        <div className="  w-screen sm:max-w-md lg:max-w-2xl ">
-          <Posts setEditPostModal={setEditPostModal} />
         </div>
       </main>
 

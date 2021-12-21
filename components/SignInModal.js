@@ -1,3 +1,4 @@
+import { getAuth } from "@firebase/auth";
 import { useContext, useRef, useState } from "react";
 import {
   forgotPassword,
@@ -19,10 +20,13 @@ function SignInModal() {
     setSignUpModal,
     forgotPasswordModal,
     setForgotPasswordModal,
+    currentUserID,
+    setCurrentUserID,
   } = useContext(SignInContext);
   const currentUser = useAuth();
 
   async function handleLogin() {
+    const auth = getAuth();
     // e.preventDefault();
     setLoading(true);
     try {
@@ -32,6 +36,7 @@ function SignInModal() {
     } catch (error) {
       alert(error.message);
     }
+    console.log(auth.currentUser.uid);
     setLoading(false);
     setSignInModal(false);
   }
